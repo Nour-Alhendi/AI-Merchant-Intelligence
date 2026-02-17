@@ -1,0 +1,15 @@
+Chargeback Monitoring Guidelines
+
+A chargeback occurs when a customer disputes a transaction with their issuing bank.
+
+Industry standards indicate:
+- A chargeback rate above 1% is considered elevated.
+- A chargeback rate above 2% may lead to payment network monitoring programs.
+
+High chargeback rates may indicate:
+- Fraudulent activity
+- Poor customer service
+- Product quality issues
+- Misleading business practices
+
+Merchants exceeding thresholds may face penalties or account restrictions.

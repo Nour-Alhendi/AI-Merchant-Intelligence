@@ -1,0 +1,14 @@
+Transaction Risk Scoring Model (Conceptual)
+
+Transaction risk increases when:
+
+- Transaction amount exceeds 10,000.
+- Multiple high-value transactions occur within short time periods.
+- Transactions are inconsistent with historical merchant behavior.
+- Unusual time-of-day patterns appear.
+
+Risk scoring combines:
+- Amount deviation
+- Frequency anomaly
+- Behavioral consistency
+- Refund and chargeback signals

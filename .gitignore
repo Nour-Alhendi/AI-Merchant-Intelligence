@@ -1,0 +1,22 @@
+# Environment
+.env
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Storage (Vector + Embeddings)
+storage/embedding_model/
+storage/vector_store/
+
+# Optional: evaluation results
+evaluation/evaluation_results/
+
+# Mac
+.DS_Store
+
+# Evaluation artifacts
+evaluation/evaluation_embedding_models/
+evaluation/evaluation_vector_stores/
+evaluation/qa_dataset_cache/

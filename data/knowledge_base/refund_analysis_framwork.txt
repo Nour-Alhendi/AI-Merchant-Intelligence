@@ -1,0 +1,16 @@
+Refund Analysis Framework
+
+Refund ratio = number of refunds / total transactions.
+
+Typical healthy refund ratios:
+- Low risk: below 10%
+- Medium risk: 10%–30%
+- High risk: above 30%
+
+High refund ratios may indicate:
+- Customer dissatisfaction
+- Operational inefficiencies
+- Fraud attempts
+- Product delivery failures
+
+Refund patterns should be analyzed alongside chargebacks and transaction spikes.

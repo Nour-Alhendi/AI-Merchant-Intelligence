@@ -1,0 +1,16 @@
+Merchant Monitoring Policy
+
+Merchants are continuously evaluated based on:
+
+- Revenue consistency
+- Refund ratio
+- Chargeback ratio
+- Transaction growth volatility
+- Large transaction frequency
+
+Monitoring categories:
+- Normal Monitoring
+- Enhanced Monitoring
+- Manual Review Required
+
+Merchants under Enhanced Monitoring require additional risk review and compliance checks.
