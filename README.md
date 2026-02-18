@@ -70,8 +70,13 @@ streamlit run app.py
 
 
 ## Example questions
+
 Which merchant has the highest chargeback rate?
+
 Is merchant m_00062 above the 2% chargeback threshold?
+
 Explain why high cross-border ratio increases fraud risk.
+
 Compare fraud rate vs chargeback rate.
+
 Does merchant M122 violate policy thresholds?
