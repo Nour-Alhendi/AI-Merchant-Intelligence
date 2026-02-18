@@ -1,5 +1,9 @@
 # AI Merchant Intelligence (Hybrid Structured + RAG)
 
+## Demo
+![AI Merchant Intelligence Demo](asset/ai-merchant-intelligence-demo.png)
+
+Production-style fintech analytics assistant that answers merchant risk questions using:
 A production-style fintech analytics assistant that answers merchant risk questions using:
 1) **Structured analytics** computed from transaction data (ground truth)
 2) **RAG knowledge base** (policies & explanations)
