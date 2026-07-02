@@ -1,0 +1,19 @@
+# Dependencies for the FastAPI backend (api.py) deployed on Render.
+# Local development uses environment.yml / conda instead — this file is
+# scoped to the Render build only.
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+numpy<2.0.0
+pandas
+python-dotenv
+fastapi
+uvicorn[standard]
+pydantic
+
+llama-index-core
+llama-index-embeddings-huggingface
+llama-index-llms-groq
+
+sentence-transformers
+torch
