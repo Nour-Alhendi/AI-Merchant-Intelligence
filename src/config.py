@@ -25,7 +25,7 @@ Always respond in a professional, data-driven tone.
 """
 
 # --- Embedding Model Configuration ---
-EMBEDDING_MODEL_NAME: str = "BAAI/bge-small-en-v1.5"
+EMBEDDING_MODEL_NAME: str = "BAAI/bge-base-en-v1.5"
 
 
 # --- RAG/VectorStore Configuration ---

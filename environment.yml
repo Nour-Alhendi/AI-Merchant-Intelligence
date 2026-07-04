@@ -22,3 +22,6 @@ dependencies:
   - pip:
     - llama-index-llms-google-genai
     - llama-index-llms-groq
+    - fastapi
+    - uvicorn[standard]
+    - streamlit
