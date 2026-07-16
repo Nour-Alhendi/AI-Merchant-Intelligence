@@ -26,8 +26,16 @@ Rules:
 - If it asks to interpret KPIs AND reference policy thresholds/actions -> HYBRID.
 """
 
-# Accepts: m_00062, m00062, m 62, M4, M 00057, etc.
-MERCHANT_ID_REGEX = re.compile(r"\bm[\s_]?0*(\d{1,5})\b", re.IGNORECASE)
+# Accepts: m_00062, m00062, m 62, M4, M 00057, merchant 62, merchant_id 62, merchant #62, etc.
+MERCHANT_ID_REGEX = re.compile(
+    r"\bmerchant(?:[\s_-]*(?:id|number|no\.?|#))?[\s_#-]*0*(\d{1,5})\b"
+    r"|\bm[\s_]?0*(\d{1,5})\b",
+    re.IGNORECASE,
+)
+
+# Last-resort fallback: a bare number, used only once we already know the
+# question is about one specific merchant but no "m..."/"merchant..." form was found.
+BARE_NUMBER_REGEX = re.compile(r"\b0*(\d{1,5})\b")
 
 # --- Extract merchant id in flexible formats and normalize to m_00000 ---
 def _extract_merchant_id(text: str) -> Optional[str]:
@@ -35,8 +43,16 @@ def _extract_merchant_id(text: str) -> Optional[str]:
     if not m:
         return None
 
-    number = int(m.group(1))
+    number = int(m.group(1) or m.group(2))
     return f"m_{number:05d}"
+
+# --- Extract a bare number as merchant id (fallback only) ---
+def _extract_bare_number_id(text: str) -> Optional[str]:
+    m = BARE_NUMBER_REGEX.search(text)
+    if not m:
+        return None
+
+    return f"m_{int(m.group(1)):05d}"
 
 # --- Ask the router LLM for a JSON routing decision (with optional merchant_id) ---
 def route_question(router_llm, question: str) -> Dict[str, Any]:
@@ -108,6 +124,8 @@ class HybridRouter:
         # 2) Merchant-specific KPIs (structured + optionally explained by LLM)
         if route == "MERCHANT_STRUCTURED":
             if not merchant_id:
+                merchant_id = _extract_bare_number_id(question)
+            if not merchant_id:
                 return {"route": "merchant_structured", "answer": "Please provide a merchant_id (e.g., m_00062)."}
             ctx = self.analytics.build_structured_context(merchant_id)
             # If user wants explanation, send ctx into chat_engine
@@ -117,6 +135,9 @@ class HybridRouter:
 
         # 3) Hybrid: structured context + policy explanation via RAG
         if route == "HYBRID":
+            if not merchant_id:
+                merchant_id = _extract_bare_number_id(question)
+
             structured = ""
             if merchant_id:
                 structured = self.analytics.build_structured_context(merchant_id)

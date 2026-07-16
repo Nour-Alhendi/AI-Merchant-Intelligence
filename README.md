@@ -29,7 +29,7 @@ The LLM is used for explanation and context, not for inventing metrics.
   - FastAPI backend
   - LLM-based Hybrid Router
   - Streamlit UI
-  - Synthetic dataset generator (~1M transactions over 5 years)
+  - Synthetic dataset generator (configurable, defaults to up to ~1M transactions over 5 years)
 
 ## Architecture (high level)
 User -> Streamlit UI -> FastAPI (/ask) -> HybridRouter
@@ -42,9 +42,8 @@ User -> Streamlit UI -> FastAPI (/ask) -> HybridRouter
 
 ### Create environment
 ```bash
-conda create -n rag-project-env python=3.12 -y
+conda env create -f environment.yml
 conda activate rag-project-env
-pip install -r requirements.txt
 ```
 
 ## Environment Variables
@@ -53,8 +52,11 @@ Create a `.env` file in the project root and add:
 GROQ_API_KEY=your_groq_api_key_here
 ```
 The application will not start without a valid API key.
- 
-## Run the Backend API
+
+## Run the app
+The backend and the UI are two separate processes — both must be running at the same time. Start the backend first, since the UI calls it whenever you send a question.
+
+**Terminal 1 — Backend API**
 ```bash
 uvicorn api:app --reload --port 8001
 ```
@@ -66,7 +68,7 @@ Swagger Docs:
 
 http://127.0.0.1:8001/docs
 
-## Run the Streamlit UI
+**Terminal 2 — Streamlit UI**
 ```bash
 streamlit run app.py
 ```

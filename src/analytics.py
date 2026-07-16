@@ -96,6 +96,12 @@ class AnalyticsEngine:
 
 # --- Convert KPIs and risk flags into LLM-ready context ---
     def build_structured_context(self, merchant_id: str) -> str:
+        if merchant_id not in self.merchants["merchant_id"].values:
+            return (
+                f"No merchant with ID '{merchant_id}' exists in the dataset. "
+                "Tell the user this merchant_id was not found instead of reporting zero-risk KPIs."
+            )
+
         s = self.merchant_summary(merchant_id)
         f = self.anomaly_flags(merchant_id)
 
